@@ -1,4 +1,6 @@
-package java;
+package javaImp;
+
+import java.util.Arrays;
 
 public class Array<E> {
 
@@ -77,6 +79,7 @@ public class Array<E> {
             data[i+1] = data[i];
         }
         data[index] = e;
+        size ++;
     }
 
     /**
@@ -147,6 +150,11 @@ public class Array<E> {
         }
         size --;
         data[size] = null;
+
+        if(size <= data.length / 2) {
+            resize(data.length / 2);
+        }
+
         return ret;
     }
 
