@@ -67,11 +67,11 @@ public class Array<E> {
      * @param e
      */
     public void add (int index, E e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("add failed. Array is full");
-        }
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("add failed. Require index >= 0 and index <= size");
+        }
+        if (size == data.length) {
+            resize(2 * data.length);
         }
         for(int i = size - 1; i >= index; i-- ) {
             data[i+1] = data[i];
@@ -175,6 +175,17 @@ public class Array<E> {
      */
     public E pop() {
         return remove(size - 1);
+    }
+
+    /**
+     * 数组扩容
+     */
+    private void resize(int newCap) {
+        E[] newData = (E[])new Object[newCap];
+        for(int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 
     @Override
