@@ -79,6 +79,103 @@ public class Array {
         data[index] = e;
     }
 
+    /**
+     * 获取index索引位置的元素
+     * @param index 索引
+     * @return
+     */
+    int get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal");
+        }
+        return data[index];
+    }
+
+    /**
+     * 修改index索引位置的元素
+     * @param index 索引
+     * @param e 修改的元素
+     * @return
+     */
+    void set(int index, int e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("SET failed. Index is illegal");
+        }
+        data[index] = e;
+    }
+
+    /**
+     * 查找数组中是否包含元素e
+     * @param e
+     * @return
+     */
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查找数组中元素e的索引， 如果不存在返回-1
+     * @param e
+     * @return
+     */
+    public int find(int e) {
+            for (int i = 0; i < size; i++) {
+                if (data[i] == e) {
+                    return i;
+                }
+            }
+            return -1;
+    }
+
+    /**
+     * 删除一个元素
+     * @param index 删除元素的索引
+     * @return 返回删除的元素
+     */
+    public int remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove falied. Index is illegalArgumentException");
+        }
+        int ret = data[index];
+        for(int i = index + 1; i < size; i++) {
+            data[i-1] = data[i];
+        }
+        size --;
+        return ret;
+    }
+
+    /**
+     * 删除第一个元素
+     * @return 删除的元素
+     */
+    public int unshift() {
+        return remove(0);
+    }
+
+    /**
+     * 查看是否有某个元素，如果有，删除该元素
+     * @param e
+     */
+    public void removeElement(int e) {
+        int index = find(e);
+        if(index != -1) {
+            remove(index);
+        }
+    }
+
+    /**
+     * 删除最后一个元素
+     * @return 删除的元素
+     */
+    public int pop() {
+        return remove(size - 1);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
