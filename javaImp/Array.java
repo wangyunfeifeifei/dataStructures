@@ -59,7 +59,7 @@ public class Array<E> {
      * 添加第一个元素
      * @param e
      */
-    public void shift(E e) {
+    public void unshift(E e) {
         add(0, e);
     }
 
@@ -162,7 +162,7 @@ public class Array<E> {
      * 删除第一个元素
      * @return 删除的元素
      */
-    public E unshift() {
+    public E shift() {
         return remove(0);
     }
 
