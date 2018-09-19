@@ -1,5 +1,7 @@
 package javaImp;
 
+import javaImp.Array.Array;
+
 public class Main_array {
     public static void main(String[] args) {
         Array<Integer> arr = new Array<>();

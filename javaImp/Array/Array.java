@@ -1,4 +1,4 @@
-package javaImp;
+package javaImp.Array;
 
 import java.util.Arrays;
 
@@ -87,11 +87,27 @@ public class Array<E> {
      * @param index 索引
      * @return
      */
-    E get(int index) {
+    public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal");
         }
         return data[index];
+    }
+
+    /**
+     * 返回最后一个元素
+     * @return
+     */
+    public E getLast() {
+        return get(size-1);
+    }
+
+    /**
+     * 返回第一个元素
+     * @return
+     */
+    public E getFirst() {
+        return get(0);
     }
 
     /**
