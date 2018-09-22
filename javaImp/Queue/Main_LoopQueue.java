@@ -1,4 +1,4 @@
-package javaImp;
+package javaImp.Queue;
 
 import javaImp.Queue.LoopQueue;
 

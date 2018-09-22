@@ -1,4 +1,4 @@
-package javaImp;
+package javaImp.Stack;
 
 import javaImp.Stack.ArrayStack;
 
