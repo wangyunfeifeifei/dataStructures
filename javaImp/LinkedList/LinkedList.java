@@ -170,12 +170,13 @@ public class LinkedList<E> {
         Node retNode = prev.next;
         prev.next = retNode.next;
         retNode.next = null;
-        size --;
+        size--;
         return retNode.e;
     }
 
     /**
      * 删除第一个元素
+     *
      * @return
      */
     public E removeFirst() {
@@ -184,6 +185,7 @@ public class LinkedList<E> {
 
     /**
      * 删除最后一个元素
+     *
      * @return
      */
     public E removeLast() {

@@ -1,11 +1,11 @@
 package javaImp.Queue;
 
-import javaImp.Queue.ArrayQueue;
+import javaImp.LinkedList.LinkedList;
 
-public class Main_ArrayQueue {
+public class Main_LinkedListQueue {
     public static void main(String[] args) {
 
-        ArrayQueue<Integer> queue = new ArrayQueue<>();
+        LinkedListQueue<Integer> queue = new LinkedListQueue<>();
 
         for (int i = 0; i < 10; i++) {
             queue.enqueue(i);
