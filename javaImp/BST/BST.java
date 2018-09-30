@@ -1,23 +1,8 @@
 package javaImp.BST;
 
 public class BST<E extends Comparable<E>> {
-    private class Node {
-        public E e;
-        public Node left, right;
 
-        public Node(E e) {
-            this.e = e;
-            left = null;
-            right = null;
-        }
-
-        @Override
-        public String toString() {
-            return e.toString();
-        }
-    }
-
-    private Node root;
+    private Node<E> root;
     private int size;
 
     public BST() {
@@ -56,7 +41,7 @@ public class BST<E extends Comparable<E>> {
      * @param node
      * @param e
      */
-    private Node add(Node node, E e) {
+    private Node add(Node<E> node, E e) {
 
         if(node == null) {
             size ++;
@@ -86,7 +71,7 @@ public class BST<E extends Comparable<E>> {
      * @param e
      * @return
      */
-    private boolean contains(Node node, E e) {
+    private boolean contains(Node<E> node, E e) {
 
         if(node == null) {
             return false;
@@ -106,20 +91,56 @@ public class BST<E extends Comparable<E>> {
      * 二分搜索树的前序遍历
      */
     public void preOrder() {
-        preOrder(root);
+        preOrder(node -> {
+            System.out.println(node.e);
+        });
+    }
+
+    /**
+     * 以回调函数的形式前序遍历
+     * @param t
+     */
+    public void preOrder(TraverseCallback t) {
+        preOrder(root, t);
     }
 
     /**
      * 以Node为根的二分搜索树的前序遍历
      * @param node
      */
-    private void preOrder(Node node) {
+    private void preOrder(Node node, TraverseCallback t) {
         if(node == null) {
             return;
         }
 
-        System.out.println(node.e);
-        preOrder(node.left);
-        preOrder(node.right);
+        t.doing(node);
+        preOrder(node.left, t);
+        preOrder(node.right, t);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        generateBSTString(root, 0, res);
+        return res.toString();
+    }
+
+    private void generateBSTString(Node node, int depth, StringBuilder res) {
+        if(node == null) {
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateBSTString(node.left, depth + 1, res);
+        generateBSTString(node.right, depth + 1, res);
+    }
+
+    private String generateDepthString(int depth) {
+        StringBuilder res = new StringBuilder();
+        for(int i =0; i<depth; i++) {
+            res.append("--");
+        }
+        return res.toString();
     }
 }

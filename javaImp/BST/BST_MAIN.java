@@ -8,5 +8,11 @@ public class BST_MAIN {
             bst.add(num);
         }
         bst.preOrder(); // 前序遍历
+
+        bst.preOrder(node -> {
+            System.out.println("node: " + node.e);
+        });
+
+        System.out.println(bst); // 检验toString()方法
     }
 }
