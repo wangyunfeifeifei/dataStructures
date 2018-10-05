@@ -118,6 +118,69 @@ public class BST<E extends Comparable<E>> {
         preOrder(node.right, t);
     }
 
+    /**
+     * 中序遍历
+     */
+    public void inOrder() {
+        inOrder((node) -> {
+            System.out.println(node);
+        });
+    }
+
+    /**
+     * 中序遍历回调实现
+     * @param t
+     */
+    public void inOrder(TraverseCallback t) {
+        inOrder(root, t);
+    }
+
+    /**
+     * 中序遍历具体实现
+     * @param node
+     * @param t
+     */
+    private void inOrder(Node node, TraverseCallback t) {
+        if(node == null) {
+            return;
+        }
+        inOrder(node.left,t );
+        t.doing(node);
+        inOrder(node.right, t);
+    }
+
+    /**
+     * 后序遍历
+     */
+    public void postOrder() {
+        postOrder((node)->{
+            System.out.println(node);
+        });
+    }
+
+    /**
+     * 后序遍历回调
+     * @param t
+     */
+    public void postOrder(TraverseCallback t) {
+        postOrder(root, t);
+    }
+
+    /**
+     * 后序遍历具体实现
+     * @param node
+     * @param t
+     */
+    private void postOrder(Node node, TraverseCallback t) {
+        if(node == null) {
+            return;
+        }
+
+        postOrder(node.left, t);
+        postOrder(node.right, t);
+        t.doing(node);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
@@ -125,6 +188,12 @@ public class BST<E extends Comparable<E>> {
         return res.toString();
     }
 
+    /**
+     * 生成二分搜索树树形结构的字符串
+     * @param node
+     * @param depth
+     * @param res
+     */
     private void generateBSTString(Node node, int depth, StringBuilder res) {
         if(node == null) {
             res.append(generateDepthString(depth) + "null\n");
@@ -136,6 +205,11 @@ public class BST<E extends Comparable<E>> {
         generateBSTString(node.right, depth + 1, res);
     }
 
+    /**
+     * 根据二叉树深度生成层次性的字符
+     * @param depth
+     * @return
+     */
     private String generateDepthString(int depth) {
         StringBuilder res = new StringBuilder();
         for(int i =0; i<depth; i++) {
