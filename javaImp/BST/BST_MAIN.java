@@ -28,5 +28,28 @@ public class BST_MAIN {
         bst.postOrder(node -> {
             System.out.println("node: " + node.e);
         });
+
+        System.out.println("==========层序遍历============");
+        bst.levelOrder();
+        bst.levelOrder(node -> {
+            System.out.println("node: " + node.e);
+        });
+
+        System.out.println("-------最小值--------");
+        System.out.println(bst.minimum());
+        System.out.println("-------最大值--------");
+        System.out.println(bst.maximum());
+
+        System.out.println("-------删除最小值--------");
+        System.out.println(bst.removeMin() + "\n");
+        bst.inOrder();
+
+        System.out.println("-------删除最小值--------");
+        System.out.println(bst.removeMin() + "\n");
+        bst.inOrder();
+
+        System.out.println("-------删除最大值--------");
+        System.out.println(bst.removeMax() + "\n");
+        bst.inOrder();
     }
 }
