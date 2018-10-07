@@ -51,5 +51,9 @@ public class BST_MAIN {
         System.out.println("-------删除最大值--------");
         System.out.println(bst.removeMax() + "\n");
         bst.inOrder();
+
+        System.out.println("-------删除4--------");
+        bst.remove(4);
+        bst.inOrder();
     }
 }
