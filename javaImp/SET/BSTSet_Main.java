@@ -22,7 +22,7 @@ public class BSTSet_Main {
         Array<String> words2 = new Array<>();
         if(FileOperation.readFile("src/a-tale-of-two-cities.txt", words2)) {
             System.out.println("Total words=:" + words2.getSize());
-            BSTSet<String> set2 = new BSTSet<>();
+            Set<String> set2 = new LinkedListSet<>();
             for(int i = 0; i < words2.getSize(); i++) {
                 set2.add(words2.get(i));
             }
