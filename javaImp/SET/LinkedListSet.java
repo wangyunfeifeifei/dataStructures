@@ -37,4 +37,9 @@ public class LinkedListSet<E> implements Set<E> {
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
+    @Override
+    public String toString() {
+        return list.toString();
+    }
 }
