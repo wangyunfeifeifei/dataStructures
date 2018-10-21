@@ -116,7 +116,7 @@ public class Array<E> {
      * @param e 修改的元素
      * @return
      */
-    void set(int index, E e) {
+    public void set(int index, E e) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("SET failed. Index is illegal");
         }
@@ -210,6 +210,20 @@ public class Array<E> {
             newData[i] = data[i];
         }
         data = newData;
+    }
+
+    /**
+     * 交换两元素位置
+     * @param i
+     * @param j
+     */
+    public void swap(int i, int j) {
+       if(i < 0 || i >= size || j < 0 || j >= size) {
+           throw new IllegalArgumentException("Index is Illegal");
+       }
+       E t = data[i];
+       data[i] = data[j];
+       data[j] = t;
     }
 
     @Override
