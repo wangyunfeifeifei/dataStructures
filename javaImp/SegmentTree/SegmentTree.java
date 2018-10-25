@@ -42,6 +42,50 @@ public class SegmentTree<E> {
     }
 
     /**
+     * 查询指定区间的内容
+     * @param queryL
+     * @param queryR
+     * @return
+     */
+    public E query(int queryL, int queryR) {
+        if (queryL < 0 || queryL >= data.length || queryR < 0 || queryR >= data.length || queryL > queryR) {
+            throw new IllegalArgumentException("Index is illegal");
+        }
+
+        return query(0, 0, data.length - 1, queryL, queryR);
+    }
+
+    /**
+     * 查询指定区间内容具体实现
+     * @param treeIndex   树的节点索引
+     * @param l 该节点表示的区间下界
+     * @param r 该节点表示的区间的上界
+     * @param queryL 需要查询的区间下界
+     * @param queryR 需要查询的区间的上界
+     * @return
+     */
+    private E query(int treeIndex, int l, int r, int queryL, int queryR) {
+
+        if (l == queryL && r == queryR) {
+            return tree[treeIndex];
+        }
+
+        int mid = l + (r - l) / 2;
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
+
+        if (queryL >= mid + 1) {
+            return query(rightTreeIndex, mid + 1, r, queryL, queryR);
+        } else if (queryR <= mid) {
+            return query(rightTreeIndex, l, mid, queryL, queryR);
+        }
+
+        E leftResult = query(leftTreeIndex, l, mid, queryL, mid);
+        E rightResult = query(rightTreeIndex, mid + 1, r, mid + 1, queryR);
+        return merger.merge(leftResult, rightResult);
+    }
+
+    /**
      * 构建线段树
      *
      * @param treeIndex
